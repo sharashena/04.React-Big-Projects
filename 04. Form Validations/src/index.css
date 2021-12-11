@@ -1,0 +1,110 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("./background-image/background.jpg") center/cover fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  --mainSpacing: 2px;
+  --mainColor: #f1f1f1;
+  --mainRadius: 5px;
+}
+
+.section {
+  padding: 2rem;
+}
+
+.section-center {
+  max-width: 1124px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 2rem;
+  letter-spacing: 5px;
+  color: #fff;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin-top: 3rem;
+  padding-bottom: 1rem;
+  border-radius: var(--mainRadius);
+}
+
+.form-group {
+  padding: 1rem;
+  width: 100%;
+}
+
+.form-control {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.form-control p {
+  color: var(--mainColor);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+
+label {
+  color: var(--mainColor);
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+
+input {
+  padding: 0.5rem;
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: var(--mainRadius);
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem 0.2rem;
+  border-radius: var(--mainRadius);
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+
+button {
+  border-radius: var(--mainRadius);
+  border: 0;
+  outline: 0;
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* error container */
+
+.error_container {
+  margin: 1rem 0;
+}
+
+.error_message {
+  text-transform: capitalize;
+  color: tomato;
+  letter-spacing: var(--mainSpacing);
+}

@@ -1,0 +1,97 @@
+/* todo */
+
+.todo {
+  padding: 2rem;
+}
+.todo .todo-center {
+  max-width: 1124px;
+  margin: 0 auto;
+}
+.todo-titles {
+  display: block;
+  margin: 2rem 2rem;
+}
+.todo-titles .content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  color: var(--backgroundColor);
+  transition: var(--mainTransition);
+}
+@media screen and (max-width: 800px) {
+  .todo-titles {
+    display: none !important;
+  }
+}
+.todo-items {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 2rem;
+  justify-items: center;
+  align-items: center;
+  transition: var(--mainTransition);
+  border-radius: 5px;
+  padding: 0.2rem;
+  margin: 1rem 1.5rem;
+}
+.todo-items:hover {
+  background: #fff;
+}
+.todo-items:hover span,
+.todo-items:hover h6,
+.todo-items .todo-items:hover p {
+  color: #222;
+}
+.todo-items h6 {
+  font-size: 0.8rem !important;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: var(--backgroundColor);
+  transition: var(--mainTransition);
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  text-align: center;
+}
+
+.todo-items span,
+.icons {
+  display: flex;
+}
+.icons span,
+.icons .todo-items h6,
+.todo-items .icons p {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.icons span:nth-child(1) {
+  color: var(--success);
+}
+.icons span:nth-child(2) {
+  color: var(--danger);
+}
+.clear-btn {
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  text-transform: capitalize;
+  background: transparent;
+  letter-spacing: var(--mainSpacing);
+  font-style: italic;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: var(--mainFontSize);
+  font-weight: 800;
+  display: block;
+  margin: 2rem auto;
+}
+
+/* alert */
+
+.alert {
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  margin-bottom: 2rem !important;
+}

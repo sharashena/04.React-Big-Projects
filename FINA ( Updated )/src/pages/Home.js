@@ -10,16 +10,10 @@ import { connect } from "react-redux";
 import ModalBtn from "../components/Modal/ModalBtn";
 import Todo from "../components/Todo/Todo";
 
-const Home = ({ users, list, isEdit, editId, open }) => {
+const Home = ({ users, list, isEdit, editId }) => {
   return (
     <>
-      <ModalBtn
-        users={users}
-        list={list}
-        isEdit={isEdit}
-        editId={editId}
-        open={open}
-      />
+      <ModalBtn users={users} list={list} isEdit={isEdit} editId={editId} />
       <Todo />
     </>
   );
@@ -28,16 +22,12 @@ const Home = ({ users, list, isEdit, editId, open }) => {
 Home.propTypes = {
   users: PropTypes.object.isRequired,
   list: PropTypes.array.isRequired,
-  open: PropTypes.bool.isRequired,
   isEdit: PropTypes.bool.isRequired,
   editId: PropTypes.number,
 };
 
-const mapStateToProps = ({
-  todoState: { users, isEdit, editId, list },
-  modalState: { open },
-}) => {
-  return { users, list, isEdit, editId, open };
+const mapStateToProps = ({ todoState: { users, isEdit, editId, list } }) => {
+  return { users, list, isEdit, editId };
 };
 
 export default connect(mapStateToProps)(Home);

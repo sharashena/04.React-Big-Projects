@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ModalForm = ({ handleClose, onChange, handleSubmit, users }) => {
+const ModalForm = ({ toggleModal, onChange, handleSubmit, users }) => {
   const classes = useStyles();
 
   const options = [
@@ -41,7 +41,6 @@ const ModalForm = ({ handleClose, onChange, handleSubmit, users }) => {
       }}
       noValidate
       autoComplete="on"
-      className={classes.form}
     >
       {/* inputs */}
 
@@ -98,7 +97,7 @@ const ModalForm = ({ handleClose, onChange, handleSubmit, users }) => {
         variant="contained"
         fullWidth
         onClick={() => {
-          handleClose();
+          toggleModal();
           handleSubmit();
         }}
       >
@@ -111,7 +110,7 @@ const ModalForm = ({ handleClose, onChange, handleSubmit, users }) => {
 ModalForm.propTypes = {
   users: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  handleClose: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

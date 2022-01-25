@@ -4,6 +4,7 @@ export const OVERRIDE_LIST = "OVERRIDE_LIST";
 export const DELETE_LIST = "DELETE_LIST";
 export const CLEAR_LIST = "CLEAR_LIST";
 export const HANDLE_CHANGE = "HANDLE_CHANGE";
+export const EMPTY_TODO_MODAL = "EMPTY_TODO_MODAL";
 
 // add list
 
@@ -37,4 +38,10 @@ export const clear = () => {
 
 export const handleChange = (name, value) => {
   return { type: HANDLE_CHANGE, payload: { name, value } };
+};
+
+// empty
+
+export const emptyTodoModal = () => {
+  return { type: EMPTY_TODO_MODAL };
 };

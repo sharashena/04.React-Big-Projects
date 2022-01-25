@@ -32,7 +32,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const TreeGridForm = ({ name, list, toggleModal, handleSubmit, onChange }) => {
+const TreeGridForm = ({
+  handleChangeName,
+  handleChangeUser,
+  listFromTodo,
+  addUser,
+  toggleModal,
+}) => {
   const classes = useStyles();
   return (
     <Box sx={style}>
@@ -42,16 +48,16 @@ const TreeGridForm = ({ name, list, toggleModal, handleSubmit, onChange }) => {
           labelId="users"
           id="users"
           name="users"
-          value={name}
+          value={handleChangeName}
           label="users"
-          onChange={onChange}
+          onChange={handleChangeUser}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {list.map((list, index) => {
+          {listFromTodo.map((list, index) => {
             return (
-              <MenuItem value={list.id} key={index}>
+              <MenuItem value={list.name} key={index}>
                 {list.name}
               </MenuItem>
             );
@@ -62,12 +68,12 @@ const TreeGridForm = ({ name, list, toggleModal, handleSubmit, onChange }) => {
         variant="contained"
         fullWidth
         style={{ marginTop: "1rem" }}
+        disabled={!handleChangeName}
+        className={`${!handleChangeName ? classes.disabledButton : null}`}
         onClick={() => {
+          addUser();
           toggleModal();
-          handleSubmit();
         }}
-        disabled={!name}
-        className={`${!name ? classes.disabledButton : null}`}
       >
         submit
       </Button>
@@ -76,11 +82,10 @@ const TreeGridForm = ({ name, list, toggleModal, handleSubmit, onChange }) => {
 };
 
 TreeGridForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  list: PropTypes.array.isRequired,
+  handleChangeName: PropTypes.string.isRequired,
+  handleChangeUser: PropTypes.func.isRequired,
+  listFromTodo: PropTypes.array.isRequired,
   toggleModal: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default TreeGridForm;

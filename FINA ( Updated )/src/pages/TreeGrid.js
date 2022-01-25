@@ -7,13 +7,14 @@ import { connect } from "react-redux";
 
 import TreeGridComponent from "../components/TreeGrid/TreeGridComponent";
 
-const TreeGrid = ({ name, treeGridList, list, open }) => {
+const TreeGrid = ({ name, treeGridList, list, selectedId, folderTxt }) => {
   return (
     <TreeGridComponent
       name={name}
       treeGridList={treeGridList}
       list={list}
-      open={open}
+      selectedId={selectedId}
+      folderTxt={folderTxt}
     />
   );
 };
@@ -22,15 +23,14 @@ TreeGrid.propTypes = {
   name: PropTypes.string.isRequired,
   treeGridList: PropTypes.array.isRequired,
   list: PropTypes.array.isRequired,
-  open: PropTypes.bool.isRequired,
+  folderTxt: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({
-  treeGridState: { name, treeGridList },
-  todoState: { list },
-  modalState: { open },
+  treeGridState: { name, folderTxt, treeGridList, selectedId },
+  todoState: { list, users },
 }) => {
-  return { name, treeGridList, list, open };
+  return { name, treeGridList, list, selectedId, folderTxt, users };
 };
 
 export default connect(mapStateToProps)(TreeGrid);

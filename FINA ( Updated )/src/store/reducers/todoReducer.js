@@ -5,6 +5,7 @@ import {
   CLEAR_LIST,
   HANDLE_CHANGE,
   OVERRIDE_LIST,
+  EMPTY_TODO_MODAL,
 } from "../actions/handleTodoList";
 
 const defaultState = {
@@ -87,6 +88,17 @@ export const todoReducer = (state = defaultState, action) => {
 
     case CLEAR_LIST:
       return { ...state, list: [] };
+
+    case EMPTY_TODO_MODAL:
+      return {
+        ...state,
+        users: {
+          id: null,
+          name: "",
+          age: "",
+          color: "",
+        },
+      };
 
     default:
       return state;

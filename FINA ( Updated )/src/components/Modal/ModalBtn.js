@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ModalForm from "./ModalForm";
 
@@ -6,13 +6,11 @@ import ModalForm from "./ModalForm";
 
 import { useDispatch } from "react-redux";
 
-// actions
-
-import { modalOpen, modalClose } from "../../store/actions/toggleModal";
 import {
   handleChange,
   overrideItem,
   addToList,
+  emptyTodoModal,
 } from "../../store/actions/handleTodoList";
 
 // material
@@ -20,15 +18,22 @@ import {
 import { Box, Button, Modal } from "@mui/material";
 import { useStyles } from "../../ui/styles";
 
-const Header = ({ open, users, isEdit, editId, list }) => {
+const Header = ({ users, isEdit, editId, list }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
 
-  const handleOpen = () => {
-    dispatch(modalOpen());
-  };
-  const handleClose = () => {
-    dispatch(modalClose());
+  const toggleModal = () => {
+    if (!modal) {
+      setModal(true);
+    } else {
+      setModal(false);
+      if (users.name || users.age || users.color) {
+        dispatch(emptyTodoModal());
+      } else {
+        return;
+      }
+    }
   };
 
   const onChange = e => {
@@ -75,18 +80,18 @@ const Header = ({ open, users, isEdit, editId, list }) => {
 
   return (
     <Box className={classes.header}>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
+      <Button variant="contained" color="primary" onClick={toggleModal}>
         add user
       </Button>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={modal}
+        onClose={toggleModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           <ModalForm
-            handleClose={handleClose}
+            toggleModal={toggleModal}
             onChange={onChange}
             handleSubmit={handleSubmit}
             users={users}
@@ -100,7 +105,6 @@ const Header = ({ open, users, isEdit, editId, list }) => {
 Header.propTypes = {
   users: PropTypes.object.isRequired,
   list: PropTypes.array.isRequired,
-  open: PropTypes.bool.isRequired,
   isEdit: PropTypes.bool.isRequired,
   editId: PropTypes.number,
 };

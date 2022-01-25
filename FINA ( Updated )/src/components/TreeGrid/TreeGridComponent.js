@@ -13,7 +13,7 @@ import TreeGridItems from "./TreeGridItems";
 // actions
 
 import {
-  handleChange,
+  handleChangeData,
   handleSelect,
   changeFolder,
   addUserToTree,
@@ -22,13 +22,13 @@ import {
   empty,
   editItem,
   overrideTreeItem,
+  defaultSelectedId,
 } from "../../store/actions/handleTreeGrid";
 
 // material
 
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { treeGridReducer } from "../../store/reducers/treeGridReducer";
 
 const useStyles = makeStyles(() => ({
   selectUsers: {
@@ -97,7 +97,7 @@ const TreeGridComponent = ({
 
   const handleChangeUser = e => {
     const { value } = e.target;
-    dispatch(handleChange(value));
+    dispatch(handleChangeData(value));
   };
 
   const handleChangeFolder = e => {
@@ -108,7 +108,9 @@ const TreeGridComponent = ({
   // add user
 
   const addUser = () => {
-    const newItems = treeGridList.find(item => item.id === selectedId);
+    const selectItem = treeGridList.find(item => item.id === selectedId);
+
+    // editting user
 
     if (name && isEdit) {
       const newItem = treeGridList.map(item => {
@@ -123,29 +125,26 @@ const TreeGridComponent = ({
       dispatch(overrideTreeItem(newItem));
       setIsEdit(false);
     } else {
-      if (!newItems) {
-        const newObj = {
+      // adding user
+
+      dispatch(
+        addUserToTree({
           id: parseInt(new Date().getTime().toString()),
-          parentId: null,
-          name,
+          parentId: !selectItem ? null : selectItem.id,
           type: "",
-        };
-        dispatch(addUserToTree(newObj));
-      } else {
-        const newObj = {
-          id: parseInt(new Date().getTime().toString()),
-          parentId: newItems.id,
           name,
-          type: "",
-        };
-        dispatch(addUserToTree(newObj));
-      }
+        })
+      );
     }
   };
 
+  // add folder
+
   const addFolder = () => {
-    setFolderModal(false);
     const newItems = treeGridList.find(item => item.id === selectedId);
+
+    setFolderModal(false);
+    setIsEdit(false);
 
     if (folderModal) {
       setFolderModal(false);
@@ -154,6 +153,8 @@ const TreeGridComponent = ({
     }
 
     if (folderTxt && isEdit) {
+      // editting folder
+
       const newItem = treeGridList.map(item => {
         if (item.id === editId) {
           return {
@@ -164,26 +165,18 @@ const TreeGridComponent = ({
         return item;
       });
       dispatch(overrideTreeItem(newItem));
-      setIsEdit(false);
     } else {
+      // adding folder
+
       if (folderTxt) {
-        if (!newItems) {
-          const newObj = {
+        dispatch(
+          addFolderToTree({
             id: parseInt(new Date().getTime().toString()),
-            parentId: null,
+            parentId: !newItems ? null : newItems.id,
             name: folderTxt,
             type: "folder",
-          };
-          dispatch(addFolderToTree(newObj));
-        } else {
-          const newObj = {
-            id: parseInt(new Date().getTime().toString()),
-            parentId: newItems.id,
-            name: folderTxt,
-            type: "folder",
-          };
-          dispatch(addFolderToTree(newObj));
-        }
+          })
+        );
       }
     }
   };
@@ -191,9 +184,7 @@ const TreeGridComponent = ({
   // delete item in tree
 
   const handleDelete = id => {
-    const newItem = treeGridList.filter(
-      item => item.parentId !== id && item.id !== id
-    );
+    const newItem = treeGridList.filter(item => item.id !== id);
 
     dispatch(deleteList(newItem));
   };
@@ -219,6 +210,12 @@ const TreeGridComponent = ({
 
     dispatch(editItem(newItem));
   };
+
+  const defaultId = () => {
+    const selectDefaultId = treeGridList.find(item => item.id === selectedId);
+    dispatch(defaultSelectedId(selectDefaultId));
+  };
+
   return (
     <Box
       sx={{
@@ -261,6 +258,7 @@ const TreeGridComponent = ({
             fullWidth
             sx={{ mt: "1rem" }}
             onClick={addFolder}
+            disabled={folderTxt.length < 2}
           >
             {isEdit ? "edit" : "add folder"}
           </Button>
@@ -288,6 +286,7 @@ const TreeGridComponent = ({
         handleSelectId={handleSelectId}
         handleEdit={handleEdit}
         selectedId={selectedId}
+        defaultSelectedId={defaultId}
       />
     </Box>
   );
@@ -297,6 +296,8 @@ TreeGridComponent.propTypes = {
   list: PropTypes.array.isRequired,
   treeGridList: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
+  folderTxt: PropTypes.string.isRequired,
+  selectedId: PropTypes.number,
 };
 
 export default TreeGridComponent;

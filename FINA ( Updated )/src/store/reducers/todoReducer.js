@@ -98,6 +98,8 @@ export const todoReducer = (state = defaultState, action) => {
           age: "",
           color: "",
         },
+        isEdit: false,
+        editId: null,
       };
 
     default:

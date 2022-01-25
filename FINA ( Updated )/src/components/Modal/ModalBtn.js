@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ModalForm from "./ModalForm";
 
@@ -18,16 +18,16 @@ import {
 import { Box, Button, Modal } from "@mui/material";
 import { useStyles } from "../../ui/styles";
 
-const Header = ({ users, isEdit, editId, list }) => {
+const Header = ({ users, isEdit, editId, list, modal, setModal }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
 
   const toggleModal = () => {
     if (!modal) {
       setModal(true);
     } else {
       setModal(false);
+      
       if (users.name || users.age || users.color) {
         dispatch(emptyTodoModal());
       } else {
@@ -95,6 +95,7 @@ const Header = ({ users, isEdit, editId, list }) => {
             onChange={onChange}
             handleSubmit={handleSubmit}
             users={users}
+            isEdit={isEdit}
           />
         </Box>
       </Modal>

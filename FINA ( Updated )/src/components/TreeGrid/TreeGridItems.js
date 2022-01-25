@@ -37,6 +37,7 @@ const TreeGridItems = ({
   handleSelectId,
   handleEdit,
   selectedId,
+  defaultSelectedId,
 }) => {
   const classes = useStyles();
 
@@ -85,7 +86,7 @@ const TreeGridItems = ({
       defaultExpandIcon={<ChevronRight />}
       disabledItemsFocusable={false}
     >
-      <TreeItem nodeId="1" label="Users">
+      <TreeItem nodeId="1" label="Users" onClick={defaultSelectedId}>
         <Box>{renderTree(treeGridList)}</Box>
       </TreeItem>
     </TreeView>

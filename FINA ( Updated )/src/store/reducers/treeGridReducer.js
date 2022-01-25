@@ -2,14 +2,14 @@ import {
   ADD_USER_TO_TREE,
   ADD_FOLDER_TO_TREE,
   DELETE_TREE_GRID_ITEM,
-  HANDLE_CHANGE,
+  HANDLE_CHANGE_DATA,
   HANDLE_CHANGE_FOLDER,
   HANDLE_EDIT,
   HANDLE_SELECT,
   EMPTY,
   OVERRIDE_TREE_ITEM,
+  DEFAULT_SELECTED_ID,
 } from "../actions/handleTreeGrid";
-import { MODAL_FALSE } from "../actions/toggleModal";
 
 const defaultState = {
   selectedId: null,
@@ -21,23 +21,16 @@ const defaultState = {
 
 export const treeGridReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case MODAL_FALSE:
-      return {
-        ...state,
-        name: "",
-        folderTxt: "",
-      };
     case EMPTY:
       return {
         ...state,
-        selectedId: null,
         name: "",
         folderTxt: "",
       };
 
     // handle change
 
-    case HANDLE_CHANGE:
+    case HANDLE_CHANGE_DATA:
       return {
         ...state,
         name: action.payload,
@@ -97,6 +90,11 @@ export const treeGridReducer = (state = defaultState, action) => {
         treeGridList: action.payload,
       };
 
+    case DEFAULT_SELECTED_ID:
+      return {
+        ...state,
+        selectedId: null,
+      };
     default:
       return state;
   }

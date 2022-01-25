@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ModalForm = ({ toggleModal, onChange, handleSubmit, users }) => {
+const ModalForm = ({ toggleModal, onChange, handleSubmit, users, isEdit }) => {
   const classes = useStyles();
 
   const options = [
@@ -101,7 +101,7 @@ const ModalForm = ({ toggleModal, onChange, handleSubmit, users }) => {
           handleSubmit();
         }}
       >
-        submit
+        {isEdit ? "edit" : "submit"}
       </Button>
     </Box>
   );

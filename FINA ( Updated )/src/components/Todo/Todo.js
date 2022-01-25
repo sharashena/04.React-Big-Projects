@@ -10,8 +10,6 @@ import { connect, useDispatch } from "react-redux";
 
 import { delList, editItem, clear } from "../../store/actions/handleTodoList";
 import { deleteList } from "../../store/actions/handleTreeGrid";
-import { modalOpen } from "../../store/actions/toggleModal";
-// import { clearTreeGridList } from "../../store/actions/handleTreeGrid";
 
 // material
 
@@ -51,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Todo({ list }) {
+function Todo({ list, editList }) {
   const dispatch = useDispatch();
 
   const cells = [
@@ -65,12 +63,6 @@ function Todo({ list }) {
     const deleteTodoItem = list.filter(list => list.id !== id);
     dispatch(delList(deleteTodoItem));
     dispatch(deleteList(deleteTodoItem));
-  };
-
-  const editList = id => {
-    const findList = list.find(list => list.id === id);
-    dispatch(editItem(findList));
-    dispatch(modalOpen());
   };
 
   const clearList = () => {

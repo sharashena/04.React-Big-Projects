@@ -106,7 +106,6 @@ const TreeGridComponent = ({
   const addUser = () => {
     const selectItem = treeGridList.find(item => item.id === selectedId);
     setIsEdit(false);
-
     // editting user
     if (name) {
       if (isEdit) {
@@ -122,7 +121,6 @@ const TreeGridComponent = ({
         dispatch(overrideTreeItem(newItem));
       } else {
         // adding user
-
         dispatch(
           addUserToTree({
             id: parseInt(new Date().getTime().toString()),
@@ -139,7 +137,6 @@ const TreeGridComponent = ({
 
   const addFolder = () => {
     const newItems = treeGridList.find(item => item.id === selectedId);
-
     setFolderModal(false);
     setIsEdit(false);
 
@@ -208,7 +205,6 @@ const TreeGridComponent = ({
     }
     setIsEdit(true);
     setEditId(newItem.id);
-
     dispatch(editItem(newItem));
   };
 

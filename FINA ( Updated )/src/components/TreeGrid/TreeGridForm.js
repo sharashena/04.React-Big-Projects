@@ -86,6 +86,7 @@ TreeGridForm.propTypes = {
   handleChangeUser: PropTypes.func.isRequired,
   listFromTodo: PropTypes.array.isRequired,
   toggleModal: PropTypes.func.isRequired,
+  addUser: PropTypes.func.isRequired,
 };
 
 export default TreeGridForm;

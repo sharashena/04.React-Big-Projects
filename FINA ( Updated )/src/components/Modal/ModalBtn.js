@@ -27,7 +27,7 @@ const Header = ({ users, isEdit, editId, list, modal, setModal }) => {
       setModal(true);
     } else {
       setModal(false);
-      
+
       if (users.name || users.age || users.color) {
         dispatch(emptyTodoModal());
       } else {
@@ -108,6 +108,8 @@ Header.propTypes = {
   list: PropTypes.array.isRequired,
   isEdit: PropTypes.bool.isRequired,
   editId: PropTypes.number,
+  modal: PropTypes.bool.isRequired,
+  setModal: PropTypes.func.isRequired,
 };
 
 export default Header;

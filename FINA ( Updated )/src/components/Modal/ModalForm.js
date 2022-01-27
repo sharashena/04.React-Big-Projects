@@ -112,6 +112,7 @@ ModalForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool.isRequired,
 };
 
 export default ModalForm;

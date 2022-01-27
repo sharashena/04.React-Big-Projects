@@ -49,15 +49,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const cells = [
+  { title: "No." },
+  { title: "name", center: "center" },
+  { title: "age", center: "center" },
+  { title: "color", center: "center" },
+];
+
 function Todo({ list, editList }) {
   const dispatch = useDispatch();
-
-  const cells = [
-    { title: "No." },
-    { title: "name", center: "center" },
-    { title: "age", center: "center" },
-    { title: "color", center: "center" },
-  ];
 
   const deleteListItem = id => {
     const deleteTodoItem = list.filter(list => list.id !== id);
@@ -70,7 +70,6 @@ function Todo({ list, editList }) {
   };
 
   const classes = useStyles();
-
   return (
     <>
       <TableContainer component={Paper} className={classes.tableContainer}>
@@ -128,6 +127,7 @@ function Todo({ list, editList }) {
 
 Todo.propTypes = {
   list: PropTypes.array.isRequired,
+  editList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ todoState: { list } }) => {

@@ -24,13 +24,14 @@ TreeGrid.propTypes = {
   treeGridList: PropTypes.array.isRequired,
   list: PropTypes.array.isRequired,
   folderTxt: PropTypes.string.isRequired,
+  selectedId: PropTypes.number,
 };
 
 const mapStateToProps = ({
   treeGridState: { name, folderTxt, treeGridList, selectedId },
   todoState: { list, users },
 }) => {
-  return { name, treeGridList, list, selectedId, folderTxt, users };
+  return { name, treeGridList, list, selectedId, folderTxt, users, selectedId };
 };
 
 export default connect(mapStateToProps)(TreeGrid);

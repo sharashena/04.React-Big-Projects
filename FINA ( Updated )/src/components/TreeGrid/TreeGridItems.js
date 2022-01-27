@@ -97,6 +97,9 @@ TreeGridItems.propTypes = {
   treeGridList: PropTypes.array.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
+  handleSelectId: PropTypes.func.isRequired,
+  selectedId: PropTypes.number,
+  defaultSelectedId: PropTypes.func.isRequired,
 };
 
 export default TreeGridItems;

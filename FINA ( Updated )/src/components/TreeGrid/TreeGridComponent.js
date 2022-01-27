@@ -71,8 +71,6 @@ const TreeGridComponent = ({
       setDataModal(false);
       if (name) {
         dispatch(empty());
-      } else {
-        return;
       }
     }
   };
@@ -87,8 +85,6 @@ const TreeGridComponent = ({
       setIsEdit(false);
       if (folderTxt) {
         dispatch(empty());
-      } else {
-        return;
       }
     }
   };
@@ -109,32 +105,33 @@ const TreeGridComponent = ({
 
   const addUser = () => {
     const selectItem = treeGridList.find(item => item.id === selectedId);
+    setIsEdit(false);
 
     // editting user
+    if (name) {
+      if (isEdit) {
+        const newItem = treeGridList.map(item => {
+          if (item.id === editId) {
+            return {
+              ...item,
+              name,
+            };
+          }
+          return item;
+        });
+        dispatch(overrideTreeItem(newItem));
+      } else {
+        // adding user
 
-    if (name && isEdit) {
-      const newItem = treeGridList.map(item => {
-        if (item.id === editId) {
-          return {
-            ...item,
+        dispatch(
+          addUserToTree({
+            id: parseInt(new Date().getTime().toString()),
+            parentId: !selectItem ? null : selectItem.id,
+            type: "",
             name,
-          };
-        }
-        return item;
-      });
-      dispatch(overrideTreeItem(newItem));
-      setIsEdit(false);
-    } else {
-      // adding user
-
-      dispatch(
-        addUserToTree({
-          id: parseInt(new Date().getTime().toString()),
-          parentId: !selectItem ? null : selectItem.id,
-          type: "",
-          name,
-        })
-      );
+          })
+        );
+      }
     }
   };
 
@@ -151,24 +148,21 @@ const TreeGridComponent = ({
     } else {
       setFolderModal(true);
     }
-
-    if (folderTxt && isEdit) {
-      // editting folder
-
-      const newItem = treeGridList.map(item => {
-        if (item.id === editId) {
-          return {
-            ...item,
-            name: folderTxt,
-          };
-        }
-        return item;
-      });
-      dispatch(overrideTreeItem(newItem));
-    } else {
-      // adding folder
-
-      if (folderTxt) {
+    if (folderTxt) {
+      if (isEdit) {
+        // editting folder
+        const newItem = treeGridList.map(item => {
+          if (item.id === editId) {
+            return {
+              ...item,
+              name: folderTxt,
+            };
+          }
+          return item;
+        });
+        dispatch(overrideTreeItem(newItem));
+      } else {
+        // adding folder
         dispatch(
           addFolderToTree({
             id: parseInt(new Date().getTime().toString()),
@@ -183,10 +177,17 @@ const TreeGridComponent = ({
 
   // delete item in tree
 
-  const handleDelete = id => {
-    const newItem = treeGridList.filter(item => item.id !== id);
-
-    dispatch(deleteList(newItem));
+  const handleDelete = (arr, id) => {
+    let newArr = [...arr];
+    newArr = newArr.filter(item => item.id !== id);
+    let children = newArr.filter(item => item.parentId === id);
+    if (children.length > 0) {
+      newArr = newArr.filter(item => item.parentId !== id);
+      children.forEach(item => handleDelete(newArr, item.id));
+      return;
+    }
+    dispatch(deleteList(newArr));
+    return newArr;
   };
 
   // selected item

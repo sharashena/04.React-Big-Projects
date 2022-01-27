@@ -54,7 +54,7 @@ const TreeGridItems = ({
                   <>
                     <Delete
                       classes={{ root: classes.trashIcon }}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(list, item.id)}
                     />
                     <Edit
                       classes={{ root: classes.editIcon }}
@@ -87,7 +87,7 @@ const TreeGridItems = ({
       disabledItemsFocusable={false}
     >
       <TreeItem nodeId="1" label="Users" onClick={defaultSelectedId}>
-        <Box>{renderTree(treeGridList)}</Box>
+        {treeGridList.length > 0 && <Box>{renderTree(treeGridList)}</Box>}
       </TreeItem>
     </TreeView>
   );

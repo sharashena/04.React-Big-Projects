@@ -175,13 +175,17 @@ const TreeGridComponent = ({
   // delete item in tree
 
   const handleDelete = (arr, id) => {
-    let newArr = [...arr];
-    newArr = newArr.filter(item => item.id !== id);
-    let children = newArr.filter(item => item.parentId === id);
-    if (children.length > 0) {
-      newArr = newArr.filter(item => item.parentId !== id);
-      children.forEach(item => handleDelete(newArr, item.id));
-      return;
+    let newArr = arr.filter(item => item.id !== id);
+    let children = arr.filter(item => item.parentId === id);
+    while (children.length > 0) {
+      let childrenOfChildren = [];
+      children.forEach(child => {
+        childrenOfChildren = childrenOfChildren.concat(
+          newArr.filter(item => item.parentId === child.id)
+        );
+        newArr = newArr.filter(item => item.id !== child.id);
+      });
+      children = childrenOfChildren;
     }
     dispatch(deleteList(newArr));
     return newArr;
@@ -191,7 +195,9 @@ const TreeGridComponent = ({
 
   const handleSelectId = id => {
     const selectedItem = treeGridList.find(item => item.id === id);
-    dispatch(handleSelect(selectedItem));
+    if (selectedId !== selectedItem.id) {
+      dispatch(handleSelect(selectedItem));
+    }
   };
 
   // edit item in tree
@@ -234,6 +240,15 @@ const TreeGridComponent = ({
       >
         add folder
       </Button>
+      <Button
+        onClick={() => {
+          console.log(treeGridList);
+        }}
+        variant="contained"
+        className={classes.selectUsers}
+      >
+        add
+      </Button>
       <Modal
         open={folderModal}
         onClose={toggleAddFolderModal}
@@ -270,8 +285,8 @@ const TreeGridComponent = ({
         <div>
           <TreeGridForm
             handleChangeUser={handleChangeUser}
-            listFromTodo={list}
             handleChangeName={name}
+            listFromTodo={list}
             addUser={addUser}
             toggleModal={toggleModal}
           />

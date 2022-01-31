@@ -70,7 +70,7 @@ export const treeGridReducer = (state = defaultState, action) => {
       return {
         ...state,
         selectedId: null,
-        treeGridList: [...action.payload],
+        treeGridList: action.payload,
       };
 
     // edit folder

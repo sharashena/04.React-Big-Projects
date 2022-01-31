@@ -240,15 +240,6 @@ const TreeGridComponent = ({
       >
         add folder
       </Button>
-      <Button
-        onClick={() => {
-          console.log(treeGridList);
-        }}
-        variant="contained"
-        className={classes.selectUsers}
-      >
-        add
-      </Button>
       <Modal
         open={folderModal}
         onClose={toggleAddFolderModal}

@@ -1,0 +1,120 @@
+@import url(variables.css);
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--clr-navLink-hover);
+  border-radius: var(--radius);
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  border-radius: var(--radius);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, var(--clr-btn-hover));
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  border-width: 0;
+}
+
+/* global styles */
+/* global styles */
+/* global styles */
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: var(--clr-bcg);
+  color: var(--clr-txt);
+  transition: 0.3s all linear;
+}
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--clr-txt);
+}
+button {
+  text-transform: uppercase;
+  cursor: pointer;
+}
+img {
+  width: 100%;
+  display: block;
+}
+
+/* global classes */
+/* global classes */
+/* global classes */
+
+.section {
+  padding: 2rem;
+}
+.section-center {
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+}
+
+.btn {
+  background-color: var(--clr-btn-bcg);
+  transition: var(--transition);
+  border: 0;
+}
+.btn:hover {
+  background-color: var(--clr-btn-hover);
+}
+
+.loading-container {
+  display: grid;
+  place-items: center;
+  height: calc(50vh - 2rem);
+}
+
+.loading {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border: 2px solid var(--clr-yellow-light);
+  border-top-color: var(--clr-btn-hover);
+  -webkit-animation: spinner 0.5s infinite linear;
+  animation: spinner 0.5s infinite linear;
+}
+.loading-wrapper {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 73.38px);
+}
+.section-title {
+  margin-bottom: 2rem;
+  text-transform: capitalize;
+}
+.section-title h2 {
+  margin-bottom: 1rem;
+}
+.error-msg {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+@-webkit-keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,41 @@
+:root {
+  --clr-black: #181920;
+  --clr-white: #f8f8f2;
+  --clr-dark: #272935;
+  --clr-grey: #414558;
+  --clr-grey-light: #2f2f35;
+  --clr-violet-light: #ff7ac6;
+  --clr-violet-dark: #ff57b6;
+  --clr-yellow-light: #ffb86b;
+  --clr-yellow-dark: #ffa647;
+  --transition: all 0.3s linear;
+  --radius: 0.5rem;
+  --spacing: 0.15rem;
+  --maxWidth: 1124px;
+}
+
+.light-theme {
+  --clr-bcg: #ffffff;
+  --clr-txt: var(--clr-black);
+  --clr-btn-bcg: #0596ff;
+  --clr-btn-hover: #0069e0;
+  --clr-nav-bcg: #f0f6ff;
+  --clr-link-bcg: #021431;
+  --clr-navLink-hover: #dee5f0;
+  --clr-resetBtn: #ff7ac6;
+  --clr-resetBtn-hover: #ff57b6;
+  --shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme {
+  --clr-bcg: #272935;
+  --clr-txt: var(--clr-white);
+  --clr-btn-bcg: var(--clr-violet-light);
+  --clr-btn-hover: var(--clr-violet-dark);
+  --clr-nav-bcg: #181920;
+  --clr-link-bcg: #414558;
+  --clr-navLink-hover: #2f2f35;
+  --clr-resetBtn: #ffb86b;
+  --clr-resetBtn-hover: #ffa647;
+  --shadow: 0 5px 30px rgba(255, 255, 255, 0.3);
+}

@@ -1,0 +1,26 @@
+:root {
+  --clr-black-dark: #191b20;
+  --clr-black-light: #202328;
+  --clr-red-dark: #bb2525;
+  --clr-red-light: #e66b6b;
+  --clr-blue-light: #0083ca;
+  --clr-blue-dark: #1683c6;
+  --clr-white: #e5e5e5;
+  --spacing: 0.085rem;
+  --radius: 0.25rem;
+  --maxWidth: 1170px;
+  --transition: all 0.3s ease;
+}
+
+.light-theme {
+  --clr-bcg: #e5e5e5;
+  --clr-txt: #191b20;
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+.dark-theme {
+  --clr-bcg: #202328;
+  --clr-txt: #e5e5e5;
+  --shadow: 0 5px 15px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}

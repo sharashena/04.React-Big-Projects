@@ -1,0 +1,59 @@
+@import url(variables.css);
+@import url(globalStyles.css);
+
+/* filters */
+/* filters */
+/* filters */
+
+.filters-form {
+  transition: var(--transition);
+}
+
+.filters-input {
+  width: 100%;
+  border: 0;
+  padding: 0.5rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--clr-txt);
+  color: var(--clr-bcg);
+  outline: none;
+  text-align: center;
+}
+.filters-input::placeholder {
+  color: var(--clr-bcg);
+}
+.filters-genres-container {
+  width: 100%;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: var(--clr-txt);
+  color: var(--clr-bcg);
+  cursor: pointer;
+}
+.filters-btn {
+  color: var(--clr-bcg);
+  font-size: 1.2rem;
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem 0.5rem;
+  margin-top: 1rem;
+}
+
+.product {
+  height: 300px;
+  width: 220px;
+}
+.product-img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.product-img {
+  border-radius: var(--radius);
+}

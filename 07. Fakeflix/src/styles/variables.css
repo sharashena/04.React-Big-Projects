@@ -1,0 +1,11 @@
+:root {
+  --maxWidth: 1500px;
+  --radius: 0.3rem;
+  --transition: all 0.3s linear;
+  --clr-black: #181818;
+  --clr-white: #f1f5f8;
+  --clr-red-light: #e50914;
+  --clr-red-dark: #cc0812;
+  --clr-grey-light: #4f50506b;
+  --clr-grey-dark: #6d6d6e;
+}
